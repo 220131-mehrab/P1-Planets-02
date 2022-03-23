@@ -8,24 +8,33 @@
 </head>
 <body>
 <h1>Dwarf Planets discovered</h1>
-<div id="planets"></div>
+
 <div class="dwarfplanets">
-<button type="button1">Home</button>
-<button type="button2">Planets</button>
-<form action="/">
+<button type="button" class="button_1" onclick="homebn()">Home</button>
+<button type="button" class="button_2" onclick="planetbn()">Planets</button>
+<form>
     <label for="dwarfplanetid">Number:</label><br>
-    <input type"text" id="dwarfplanetid" value=" "><br>
-    <label for="nameofdwarfplanet">Planet name:</label><br>
-    <input type"text" id="nameofdwarfplanet" value=" "><br>
+    <input type="text" id="dwarfplanetid" name="dwarfplanetid" value=" "><br>
+    <label for="nameofdwarfplanet">Dwarf planet name:</label><br>
+    <input type=text" id="nameofdwarfplanet" name="nameofdwarfplanet" value=" "><br>
     <label for="mass">The Mass:</label><br>
-    <input type"text" id="mass" value=" "><br>
+    <input type="text" id="mass" name="mass" value=" "><br>
     <label for="moons">Number of moons:</label><br>
-    <input type"text" id="moons" value=" "><br>
+    <input type="text" id="moons" name="moons" value=" "><br>
     <label for="distance">Distance from the sun:</label><br>
-    <input type"text" id="distance" value=" "><br><br>
-    <input type="submit" value="insert">
+    <input type=text" id="distance" name="distance" value=" "><br><br>
+    <button type="button" onclick="postDwarfPlanets()">Insert</button>
     </form>
 </div>
+<div id="dwarfplanets"></div>
+<script>
+    function homebn(){
+        window.location.href= "index.html";
+    }
+    function planetbn(){
+        window.location.href= "planets.html";
+    }
+</script>
 <script src="dwarf.js"></script>
 </body>
 </html>

@@ -61,7 +61,7 @@ class Planet{
     public long getdistance() {
         return distance;
     }
-    public void setdistance(long name) {
+    public void setdistance(long distance) {
         this.distance = distance;
     }
     @Override
@@ -113,19 +113,19 @@ public class App {
                 resp.setContentType("application/json");
                 resp.getWriter().println(results);
             }
-            Planet planet = new Planet();
+            //Planet planet = new Planet();
             @Override
             protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
                 ObjectMapper mapper = new ObjectMapper();
-                String newPlanet = mapper.readValue(req.getInputStream(), String.class);
+                Planet newPlanet = mapper.readValue(req.getInputStream(), Planet.class);
                 System.out.println(newPlanet);
                 try{
-                    PreparedStatement stmt = connection.prepareStatement("insert into 'planets' values(?, ?, ?, ?, ?)");
-                    stmt.setInt(1, planet.getplanetID());
-                    stmt.setString(2, planet.getname());
-                    stmt.setString(3, planet.getmass());
-                    stmt.setInt(4, planet.getmoon());
-                    stmt.setLong(5, planet.getdistance());
+                    PreparedStatement stmt = connection.prepareStatement("insert into planets values(?, ?, ?, ?, ?)");
+                    stmt.setInt(1, newPlanet.getplanetID());
+                    stmt.setString(2, newPlanet.getname());
+                    stmt.setString(3, newPlanet.getmass());
+                    stmt.setInt(4, newPlanet.getmoon());
+                    stmt.setLong(5, newPlanet.getdistance());
 
                     stmt.executeUpdate();
                 } catch(SQLException e) {

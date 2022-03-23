@@ -1,7 +1,11 @@
 body{
     background-image: url('Dwarf-Planets.jpg');
     Color:#ffffff;
+
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+    #planet{width:1000px;}
     .button1{background-color: white; color: black; border: 5px solid #CCCCCC;}
     .button1:hover{background-color: #33CCFF; color: black;}
     .button2{background-color: white; color: black; border: 5px solid #CCCCCC;}

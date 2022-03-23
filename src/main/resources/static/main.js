@@ -2,12 +2,12 @@ var welcomeMsg = 'Exploring Planets';
 document.querySelector('h1').innerText = welcomeMsg;
 
 
-fetch('/planets').then(resp => resp.json()).then(planets => {
-    document.querySelector('#planet').innerHTML = listPlanet(planets);
+fetch('/allplanets').then(resp => resp.json()).then(planets => {
+    document.querySelector('#planet').innerHTML = listPlanets(planets);
 });
 
 let listPlanet = function(planet){
-    return '<p>' + planets.planetID + ": " + planets.name + '</p>';
+    return '<p>' + planet.planetID + ": " + planet.name + ": " + planet.mass + ": " + planet.moon + ": " + planet.distance + '</p>';
 };
 
 function listPlanets(json){
@@ -20,11 +20,11 @@ function postPlanets(){
         "planetID": document.getElementById("planetid").value,
         "name": document.getElementById("nameofplanet").value,
         "mass": document.getElementById("mass").value,
-        "moons": document.getElementById("moons").value
+        "moon": document.getElementById("moons").value,
         "distance": document.getElementById("distance").value
     }
     //console.log(planet);
-    fetch("/planets",{
+    fetch("/allplanets",{
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -37,7 +37,8 @@ function postPlanets(){
         }
         console.log(result.text());
     }).catch((error) => {console.log(error);})
-    fetch('/planets').then(resp => resp.json()).then(artist => {
-        document.querySelector('body').innerHTML = listPlanet(planets);
+    fetch('/allplanets').then(resp => resp.json()).then(planets => {
+        document.querySelector('#planet').innerHTML = listPlanets(planets);
     });
+    window.document.location.reload();
 };
