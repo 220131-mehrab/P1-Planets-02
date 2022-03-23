@@ -3,25 +3,27 @@ document.querySelector('h1').innerText = welcomeMsg;
 
 
 fetch('/planets').then(resp => resp.json()).then(planets => {
-    document.querySelector('body').innerHTML = listPlanet(planets);
+    document.querySelector('#planet').innerHTML = listPlanet(planets);
 });
 
 let listPlanet = function(planet){
-    return '<p>' + planets.planetId + ": " + planets.name + '</p>';
+    return '<p>' + planets.planetID + ": " + planets.name + '</p>';
 };
 
 function listPlanets(json){
-    return`
-    ${json.map(listPlanet).join('\n')}
-    `
+    //return `${json.map(listPlanet).join('\n')}`
+    return `${json.map(listPlanet).join('\n')}`
 };
 
 function postPlanets(){
     let planet = {
-        "planetId": document.getElementById("planetId").value,
-        "name": document.getElementById("name").value
+        "planetID": document.getElementById("planetid").value,
+        "name": document.getElementById("nameofplanet").value,
+        "mass": document.getElementById("mass").value,
+        "moons": document.getElementById("moons").value
+        "distance": document.getElementById("distance").value
     }
-    console.log(planet);
+    //console.log(planet);
     fetch("/planets",{
         method: "POST",
         headers: {
