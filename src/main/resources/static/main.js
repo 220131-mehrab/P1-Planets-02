@@ -33,7 +33,7 @@ function postPlanets(){
         body: JSON.stringify(planet)
     }).then((result) => {
         if(result.status != 200){
-            throw new Error("Bad Serever Response")
+            throw new Error("Bad Server Response")
         }
         console.log(result.text());
     }).catch((error) => {console.log(error);})

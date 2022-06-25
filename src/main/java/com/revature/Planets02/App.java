@@ -83,22 +83,6 @@ public class App {
             @Override
             protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
                 List<Planet> planets = new ArrayList<>();
-//                try{
-//                    ResultSet rs = connection.prepareStatement("select * from planets").executeQuery();
-//                    while(rs.next()){
-//                        planets.add(new Planet(rs.getInt("PlanetId"), rs.getString("NameofPlanet"), rs.getString("Mass"), rs.getInt("Moons"), rs.getLong("Distance")));
-//                    }
-//                } catch (SQLException e){
-//                    System.err.println("Fail to retrieve from db: " + e.getSQLState());
-//                }
-//
-//                //Get a JSON Mapper
-//                ObjectMapper mapper = new ObjectMapper();
-//                String results = mapper.writeValueAsString(planets);
-//                resp.setContentType("applicaton/json");
-//                resp.getWriter().println(results);
-//                resp.getWriter().println("Testing");
-//            }
                 try {
                     ResultSet rs = connection.prepareStatement("select * from planets").executeQuery();
                     while (rs.next()) {
@@ -113,7 +97,6 @@ public class App {
                 resp.setContentType("application/json");
                 resp.getWriter().println(results);
             }
-            //Planet planet = new Planet();
             @Override
             protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
                 ObjectMapper mapper = new ObjectMapper();
@@ -127,7 +110,7 @@ public class App {
                     stmt.setInt(4, newPlanet.getmoon());
                     stmt.setLong(5, newPlanet.getdistance());
 
-                    stmt.executeUpdate();
+
                 } catch(SQLException e) {
                     System.err.println("Failed to insert: " + e.getMessage());
                 }
